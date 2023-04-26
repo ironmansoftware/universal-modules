@@ -26,6 +26,12 @@ Available functions:
 - Send-PSUFailedJobSlackNotification
 - Send-PSUFailedJobTeamsNotification
 
+## Utilities
+
+Utility functions for features of PowerShell Universal. 
+
+- [App Utilities](/Utilities/Universal.Utilities.Apps/)
+
 ## Gallery
 
 Modules in this repository are published to the PowerShell Gallery. Modules will also appear on the [Ironman Software PowerShell Universal Modules](https://ironmansoftware.com/powershell-universal/modules) page and within PowerShell Universal. 
