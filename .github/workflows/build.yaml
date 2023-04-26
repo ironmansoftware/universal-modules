@@ -16,5 +16,5 @@ jobs:
           run: Install-Module InvokeBuild -Force
           shell: pwsh
         - name: Build
-          run: Invoke-Build -File .\Components\Universal.Components.Calendar\component.build.ps1
+          run: Invoke-Build -File .\Components\components.build.ps1
           shell: pwsh

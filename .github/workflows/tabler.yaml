@@ -1,4 +1,4 @@
-name: Publish Calendar
+name: Publish Tabler
 on: [workflow_dispatch]
 
 jobs:
@@ -16,10 +16,10 @@ jobs:
           run: Install-Module InvokeBuild -Force
           shell: pwsh
         - name: Build
-          run: Invoke-Build -File .\Components\components.build.ps1 -Task Calendar
+          run: Invoke-Build -File .\Components\components.build.ps1 -Task Tabler
           shell: pwsh
         - name: Publish
-          run: Publish-Module -Path .\Components\Calendar\output\Universal.Components.Calendar -NuGetApiKey $ENV:NUGETAPIKEY -Repository PSGallery -Verbose
+          run: Publish-Module -Path .\Tabler\output\Universal.Icons.Tabler -NuGetApiKey $ENV:NUGETAPIKEY -Repository PSGallery -Verbose
           shell: pwsh
           env:
-            NUGETAPIKEY: ${{ secrets.PSGALLERYKEY }}
+            NUGETAPIKEY: ${{ secrets.NuGetApiKey }}
