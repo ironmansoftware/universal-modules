@@ -1,0 +1,13 @@
+name: Publish Universal.Notifications
+on: [workflow_dispatch]
+
+jobs:
+    build:
+      name: Build
+      runs-on: ubuntu-latest
+      steps:
+        - name: Publish
+          run: Publish-Module -Path .\Notifications\Universal.Notifications -NuGetApiKey $ENV:NUGETAPIKEY -Repository PSGallery -Verbose
+          shell: pwsh
+          env:
+            NUGETAPIKEY: ${{ secrets.NuGetApiKey }}
