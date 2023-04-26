@@ -101,7 +101,7 @@
             LicenseUri = 'https://github.com/ironmansoftware/universal-modules/blob/main/LICENSE'
 
             # A URL to the main website for this project.
-            # ProjectUri = ''
+            ProjectUri = 'https://github.com/ironmansoftware/universal-modules/tree/main/Notifications/Universal.Notifications'
 
             # A URL to an icon representing this module.
             IconUri    = 'https://www.ironmansoftware.com/img/ps-icon.svg'
