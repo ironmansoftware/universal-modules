@@ -10,4 +10,4 @@ jobs:
           run: Publish-Module -Path .\Notifications\Universal.Notifications -NuGetApiKey $ENV:NUGETAPIKEY -Repository PSGallery -Verbose
           shell: pwsh
           env:
-            NUGETAPIKEY: ${{ secrets.NuGetApiKey }}
+            NUGETAPIKEY: ${{ secrets.PSGALLERYKEY }}
