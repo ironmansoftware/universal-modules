@@ -2,6 +2,9 @@ import React from 'react';
 import { withComponentFeatures } from 'universal-dashboard'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
+import timeGridPlugin from '@fullcalendar/timegrid'
+import multimonthPlugin from '@fullcalendar/multimonth'
+import listPlugin from '@fullcalendar/list'
 import interactionPlugin from '@fullcalendar/interaction';
 
 const UDComponent = props => {
@@ -17,10 +20,20 @@ const UDComponent = props => {
 
     return (
         <FullCalendar
-            plugins={[dayGridPlugin, interactionPlugin]}
-            initialView="dayGridMonth"
+            plugins={[
+                dayGridPlugin,
+                interactionPlugin,
+                timeGridPlugin,
+                listPlugin,
+                multimonthPlugin
+            ]}
+            initialView={props.view}
             events={props.events}
             dateClick={dateClicked}
+            weekends={props.weekends}
+            hiddenDays={props.hiddenDays}
+            dayHeaders={props.dayHeaders}
+            initialDate={props.initialDate}
         />
     )
 }

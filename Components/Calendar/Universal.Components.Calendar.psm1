@@ -19,7 +19,18 @@ function New-UDCalendar {
         [Parameter()]
         [Hashtable[]]$Events = @(),
         [Parameter()]
-        [Endpoint]$DateClicked
+        [Endpoint]$DateClicked,
+        [Parameter()]
+        [ValidateSet('dayGridYear', 'dayGridMonth', 'dayGridWeek', 'dayGridDay', 'timeGridWeek', 'timeGridDay', 'listWeek', 'listDay', 'listMonth', 'listYear', 'multiMonthYear')]
+        [string]$View = "dayGridMonth",
+        [Parameter()]
+        [Switch]$HideWeekends,
+        [Parameter()]
+        [int[]]$HiddenDays = @(),
+        [Parameter()]
+        [Switch]$HideDayHeader,
+        [Parameter()]
+        [DateTime]$InitialDate = (Get-Date)
     )
     
     End {
@@ -35,6 +46,12 @@ function New-UDCalendar {
 
             events      = $Events
             dateClicked = $DateClicked
+            renderEvent = $RenderEvent
+            weekends    = -not $HideWeekends.IsPresent
+            hiddenDays  = $HiddenDays
+            dayHeaders  = -not $HideDayHeader.IsPresent
+            initialDate = $InitialDate
+            view        = $View
         }
     }
 }
@@ -77,15 +94,27 @@ function New-UDCalendarEvent {
         [Parameter()]
         [Switch]$AllDay,
         [Parameter()]
-        [string]$Url
+        [string]$Url,
+        [Parameter()]
+        [string]$ClassName,
+        [Parameter()]
+        [string]$BackgroundColor,
+        [Parameter()]
+        [string]$BorderColor,
+        [Parameter()]
+        [string]$TextColor
     )
 
     @{
-        id     = $Id
-        title  = $Title
-        start  = $Start
-        end    = if ($PSBoundParameters.ContainsKey('End')) { $End } else { $null }
-        allDay = $AllDay.IsPresent
-        url    = $Url
+        id              = $Id
+        title           = $Title
+        start           = $Start
+        end             = if ($PSBoundParameters.ContainsKey('End')) { $End } else { $null }
+        allDay          = $AllDay.IsPresent
+        url             = $Url
+        className       = $ClassName
+        backgroundColor = $BackgroundColor
+        borderColor     = $BorderColor
+        textColor       = $TextColor
     }
 }
