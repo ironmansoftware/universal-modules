@@ -19,7 +19,7 @@ jobs:
           run: Invoke-Build -File .\Components\components.build.ps1 -Task Bootstrap
           shell: pwsh
         - name: Publish
-          run: Publish-Module -Path .\Icons.Bootstrap\output\Universal.Icons.Bootstrap -NuGetApiKey $ENV:NUGETAPIKEY -Repository PSGallery -Verbose
+          run: Publish-Module -Path .\Components\Icons.Bootstrap\output\Universal.Icons.Bootstrap -NuGetApiKey $ENV:NUGETAPIKEY -Repository PSGallery -Verbose
           shell: pwsh
           env:
             NUGETAPIKEY: ${{ secrets.NuGetApiKey }}
