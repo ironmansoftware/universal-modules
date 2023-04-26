@@ -1,0 +1,25 @@
+name: CI
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+    build:
+      name: Build
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/setup-node@v3
+          with:
+            node-version: '16.13.2'
+        - uses: actions/checkout@v3
+          with:
+            fetch-depth: 0
+        - name: Install InvokeBuild
+          run: Install-Module InvokeBuild -Force
+          shell: pwsh
+        - name: Build
+          run: Invoke-Build -File .\Components\Universal.Components.Calendar\component.build.ps1
+          shell: pwsh
+        - name: Publish
+          run: Publish-Module -Path .\Components\Universal.Components.Calendar\output\Universal.Components.Calendar -NuGetApiKey $ENV:NUGETAPIKEY -Repository PSGallery -Verbose
+          shell: pwsh
+          env:
+            NUGETAPIKEY: ${{ secrets.PSGALLERYKEY }}
