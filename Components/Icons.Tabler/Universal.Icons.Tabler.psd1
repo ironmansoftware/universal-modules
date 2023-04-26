@@ -4,7 +4,7 @@
     RootModule        = 'Universal.Icons.Tabler.psm1'
     
     # Version number of this module.
-    ModuleVersion     = '0.0.2'
+    ModuleVersion     = '0.0.3'
     
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -90,13 +90,13 @@
             Tags       = @("PowerShellUniversal", "App", "Tabler")
     
             # A URL to the license for this module.
-            LicenseUri = 'https://github.com/ironmansoftware/universal-icons/blob/main/LICENSE'
+            LicenseUri = 'https://github.com/ironmansoftware/universal-modules/blob/main/LICENSE'
     
             # A URL to the main website for this project.
-            ProjectUri = 'https://github.com/ironmansoftware/universal-icons'
+            ProjectUri = 'https://github.com/ironmansoftware/universal-modules'
     
             # A URL to an icon representing this module.
-            IconUri    = 'https://raw.githubusercontent.com/ironmansoftware/universal-icons/main/Tabler/logo.svg'
+            IconUri    = 'https://raw.githubusercontent.com/ironmansoftware/universal-modules/main/Components/Icons.Tabler/logo.svg'
     
             # ReleaseNotes of this module
             # ReleaseNotes = ''

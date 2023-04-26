@@ -16,3 +16,5 @@ task Build {
     Copy-Item $PSScriptRoot\Universal.*.psd1 $OutputPath
     Copy-Item $PSScriptRoot\Universal.*.psm1 $OutputPath
 }
+
+task . Build

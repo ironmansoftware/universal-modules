@@ -4,7 +4,7 @@
     RootModule        = 'Universal.Icons.Feather.psm1'
     
     # Version number of this module.
-    ModuleVersion     = '0.0.4'
+    ModuleVersion     = '0.0.5'
     
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -90,10 +90,10 @@
             Tags       = @("PowerShellUniversal", "App", "Feather")
     
             # A URL to the license for this module.
-            LicenseUri = 'https://github.com/ironmansoftware/universal-icons/blob/main/LICENSE'
+            LicenseUri = 'https://github.com/ironmansoftware/universal-modules/blob/main/LICENSE'
     
             # A URL to the main website for this project.
-            ProjectUri = 'https://github.com/ironmansoftware/universal-icons'
+            ProjectUri = 'https://github.com/ironmansoftware/universal-modules'
     
             # A URL to an icon representing this module.
             IconUri    = 'https://www.ironmansoftware.com/img/ps-icon.svg'
