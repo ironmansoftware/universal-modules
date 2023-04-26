@@ -93,7 +93,7 @@
             LicenseUri = 'https://github.com/ironmansoftware/universal-modules/blob/main/LICENSE'
     
             # A URL to the main website for this project.
-            ProjectUri = 'https://github.com/ironmansoftware/universal-modules'
+            ProjectUri = 'https://github.com/ironmansoftware/universal-modules/tree/main/Components/Icons.Bootstrap'
     
             # A URL to an icon representing this module.
             IconUri    = 'https://raw.githubusercontent.com/ironmansoftware/universal-modules/main/Components/Icons.Bootstrap/logo.png'

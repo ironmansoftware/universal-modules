@@ -2,6 +2,16 @@
 
 PowerShell Universal modules that provide additional functionality to the platform.
 
+## Components
+
+Additional components to add to your PowerShell Universal apps. 
+
+- [Calendar](/Components/Calendar/)
+- [Bootstrap Icons](/Components/Icons.Bootstrap/)
+- [Feather Icons](/Components/Icons.Feather/)
+- [Material Design Icons](/Components/Icons.MaterialDesign/)
+- [Tabler Icons](/Components/Icons.Tabler/)
+
 ## [Notifications](/Notifications/Universal.Notifications/README.md)
 
 Scripts that can be used along with triggers for notifications purposes. 
