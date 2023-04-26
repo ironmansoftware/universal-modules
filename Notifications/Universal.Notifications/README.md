@@ -1,6 +1,6 @@
 # Universal.Notifications
 
-A collection of functions for sending notifications in PowerShell Universal. 
+A collection of functions for sending notifications in PowerShell Universal. This module requires PowerShell Universal v4.
 
 ## Send-PSUFailedJobEmail 
 
