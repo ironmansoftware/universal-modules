@@ -75,7 +75,7 @@ task Tabler {
 }
 
 task Calendar {
-    Invoke-Build "$PSScriptRoot\Calendar\component.build.ps1"
+    Invoke-Build -File "$PSScriptRoot\Calendar\component.build.ps1"
 }
 
 task . MaterialDesign, Feather, Bootstrap, Tabler, Calendar
