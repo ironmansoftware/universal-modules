@@ -57,3 +57,17 @@ function Send-PSUFailedJobSlackNotification {
 
     Invoke-RestMethod $SlackUrl -Body $payload -Method POST -ContentType 'application/json' | Out-Null
 }
+
+function Send-PSUFailedJobTeamsNotification {
+    param($Job)
+
+    if ($Job -eq $null) {
+        return
+    }
+
+    $ViewJobButton = New-TeamsButton -Name 'View Job' -Link "$ApiUrl/admin/automation/jobs/$($Job.Id)"
+
+    $Section = New-TeamsSection -Buttons $ViewJobButton
+
+    Send-TeamsMessage -Uri $TeamsUrl -MessageTitle "Job $($Job.Id) failed while running script $($Job.ScriptFullPath)" -MessageText "The job was started at $($Job.StartTime) in the $($job.Environment) environment" -Sections $Section
+}

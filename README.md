@@ -14,3 +14,4 @@ Available functions:
 
 - Send-PSUFailedJobEmail
 - Send-PSUFailedJobSlackNotification
+- Send-PSUFailedJobTeamsNotification

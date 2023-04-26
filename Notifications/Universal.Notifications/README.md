@@ -34,3 +34,17 @@ Once the variables are configured, you can setup a trigger to send notifications
 ```powershell
 New-PSUTrigger -Name "Failed Job Slack Notification" -EventType "JobFailed" -TriggerScript "Universal.Notifications\Send-PSUFailedJobSlackNotification"
 ```
+
+## Send-PSUFailedJobTeamsNotification
+
+This command can be used with a trigger to send a failed job Microsoft Teams notification. You will need to configure the following variables for this to work. 
+
+```powershell
+New-PSUVariable -Name "TeamsUrl" -Description "The Microsoft teams web hook URL."
+```
+
+Once the variables are configured, you can setup a trigger to send notifications. 
+
+```powershell
+New-PSUTrigger -Name "Failed Job Teams Notification" -EventType "JobFailed" -TriggerScript "Universal.Notifications\Send-PSUFailedJobTeamsNotification"
+```
