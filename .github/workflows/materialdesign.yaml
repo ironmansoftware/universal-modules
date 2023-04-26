@@ -19,7 +19,7 @@ jobs:
           run: Invoke-Build -File .\Components\components.build.ps1 -Task MaterialDesign
           shell: pwsh
         - name: Publish
-          run: Publish-Module -Path .\MaterialDesign\output\Universal.Icons.MaterialDesign -NuGetApiKey $ENV:NUGETAPIKEY -Repository PSGallery -Verbose
+          run: Publish-Module -Path .\Icons.MaterialDesign\output\Universal.Icons.MaterialDesign -NuGetApiKey $ENV:NUGETAPIKEY -Repository PSGallery -Verbose
           shell: pwsh
           env:
             NUGETAPIKEY: ${{ secrets.NuGetApiKey }}

@@ -1,8 +1,8 @@
 task MaterialDesign {
-    $OutputPath = "$PSScriptRoot\MaterialDesign\output\Universal.Icons.MaterialDesign"
+    $OutputPath = "$PSScriptRoot\Icons.MaterialDesign\output\Universal.Icons.MaterialDesign"
     Remove-Item -Path $OutputPath -Force -ErrorAction SilentlyContinue -Recurse
-    Remove-Item -Path "$PSScriptRoot\MaterialDesign\public" -Force -ErrorAction SilentlyContinue -Recurse	
-    Set-Location "$PSScriptRoot\MaterialDesign"
+    Remove-Item -Path "$PSScriptRoot\Icons.MaterialDesign\public" -Force -ErrorAction SilentlyContinue -Recurse	
+    Set-Location "$PSScriptRoot\Icons.MaterialDesign"
 
     & {
         $ErrorActionPreference = 'SilentlyContinue'
@@ -12,16 +12,16 @@ task MaterialDesign {
 
     New-Item -Path $OutputPath -ItemType Directory
 
-    Copy-Item $PSScriptRoot\MaterialDesign\public\*.* $OutputPath
-    Copy-Item $PSScriptRoot\MaterialDesign\Universal.*.psd1 $OutputPath
-    Copy-Item $PSScriptRoot\MaterialDesign\Universal.*.psm1 $OutputPath
+    Copy-Item $PSScriptRoot\Icons.MaterialDesign\public\*.* $OutputPath
+    Copy-Item $PSScriptRoot\Icons.MaterialDesign\Universal.*.psd1 $OutputPath
+    Copy-Item $PSScriptRoot\Icons.MaterialDesign\Universal.*.psm1 $OutputPath
 }
 
 task Feather {
-    $OutputPath = "$PSScriptRoot\Feather\output\Universal.Icons.Feather"
+    $OutputPath = "$PSScriptRoot\Icons.Feather\output\Universal.Icons.Feather"
     Remove-Item -Path $OutputPath -Force -ErrorAction SilentlyContinue -Recurse
-    Remove-Item -Path "$PSScriptRoot\Feather\public" -Force -ErrorAction SilentlyContinue -Recurse	
-    Set-Location "$PSScriptRoot\Feather"
+    Remove-Item -Path "$PSScriptRoot\Icons.Feather\public" -Force -ErrorAction SilentlyContinue -Recurse	
+    Set-Location "$PSScriptRoot\Icons.Feather"
 
     & {
         $ErrorActionPreference = 'SilentlyContinue'
@@ -31,16 +31,16 @@ task Feather {
 
     New-Item -Path $OutputPath -ItemType Directory
 
-    Copy-Item $PSScriptRoot\Feather\public\*.* $OutputPath
-    Copy-Item $PSScriptRoot\Feather\Universal.*.psd1 $OutputPath
-    Copy-Item $PSScriptRoot\Feather\Universal.*.psm1 $OutputPath
+    Copy-Item $PSScriptRoot\Icons.Feather\public\*.* $OutputPath
+    Copy-Item $PSScriptRoot\Icons.Feather\Universal.*.psd1 $OutputPath
+    Copy-Item $PSScriptRoot\Icons.Feather\Universal.*.psm1 $OutputPath
 }
 
 task Bootstrap {
-    $OutputPath = "$PSScriptRoot\Bootstrap\output\Universal.Icons.Bootstrap"
+    $OutputPath = "$PSScriptRoot\Icons.Bootstrap\output\Universal.Icons.Bootstrap"
     Remove-Item -Path $OutputPath -Force -ErrorAction SilentlyContinue -Recurse
-    Remove-Item -Path "$PSScriptRoot\Bootstrap\public" -Force -ErrorAction SilentlyContinue -Recurse	
-    Set-Location "$PSScriptRoot\Bootstrap"
+    Remove-Item -Path "$PSScriptRoot\Icons.Bootstrap\public" -Force -ErrorAction SilentlyContinue -Recurse	
+    Set-Location "$PSScriptRoot\Icons.Bootstrap"
 
     & {
         $ErrorActionPreference = 'SilentlyContinue'
@@ -50,16 +50,16 @@ task Bootstrap {
 
     New-Item -Path $OutputPath -ItemType Directory
 
-    Copy-Item $PSScriptRoot\Bootstrap\public\*.* $OutputPath
-    Copy-Item $PSScriptRoot\Bootstrap\Universal.*.psd1 $OutputPath
-    Copy-Item $PSScriptRoot\Bootstrap\Universal.*.psm1 $OutputPath
+    Copy-Item $PSScriptRoot\Icons.Bootstrap\public\*.* $OutputPath
+    Copy-Item $PSScriptRoot\Icons.Bootstrap\Universal.*.psd1 $OutputPath
+    Copy-Item $PSScriptRoot\Icons.Bootstrap\Universal.*.psm1 $OutputPath
 }
 
 task Tabler {
-    $OutputPath = "$PSScriptRoot\Tabler\output\Universal.Icons.Tabler"
+    $OutputPath = "$PSScriptRoot\Icons.Tabler\output\Universal.Icons.Tabler"
     Remove-Item -Path $OutputPath -Force -ErrorAction SilentlyContinue -Recurse
-    Remove-Item -Path "$PSScriptRoot\Tabler\public" -Force -ErrorAction SilentlyContinue -Recurse	
-    Set-Location "$PSScriptRoot\Tabler"
+    Remove-Item -Path "$PSScriptRoot\Icons.Tabler\public" -Force -ErrorAction SilentlyContinue -Recurse	
+    Set-Location "$PSScriptRoot\Icons.Tabler"
 
     & {
         $ErrorActionPreference = 'SilentlyContinue'
@@ -69,9 +69,9 @@ task Tabler {
 
     New-Item -Path $OutputPath -ItemType Directory
 
-    Copy-Item $PSScriptRoot\Tabler\public\*.* $OutputPath
-    Copy-Item $PSScriptRoot\Tabler\Universal.*.psd1 $OutputPath
-    Copy-Item $PSScriptRoot\Tabler\Universal.*.psm1 $OutputPath
+    Copy-Item $PSScriptRoot\Icons.Tabler\public\*.* $OutputPath
+    Copy-Item $PSScriptRoot\Icons.Tabler\Universal.*.psd1 $OutputPath
+    Copy-Item $PSScriptRoot\Icons.Tabler\Universal.*.psm1 $OutputPath
 }
 
 task Calendar {

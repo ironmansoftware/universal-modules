@@ -19,7 +19,7 @@ jobs:
           run: Invoke-Build -File .\Components\components.build.ps1 -Task Feather
           shell: pwsh
         - name: Publish
-          run: Publish-Module -Path .\Feather\output\Universal.Icons.Feather -NuGetApiKey $ENV:NUGETAPIKEY -Repository PSGallery -Verbose
+          run: Publish-Module -Path .\Icons.Feather\output\Universal.Icons.Feather -NuGetApiKey $ENV:NUGETAPIKEY -Repository PSGallery -Verbose
           shell: pwsh
           env:
             NUGETAPIKEY: ${{ secrets.NuGetApiKey }}

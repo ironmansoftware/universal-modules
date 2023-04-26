@@ -19,7 +19,7 @@ jobs:
           run: Invoke-Build -File .\Components\components.build.ps1 -Task Tabler
           shell: pwsh
         - name: Publish
-          run: Publish-Module -Path .\Tabler\output\Universal.Icons.Tabler -NuGetApiKey $ENV:NUGETAPIKEY -Repository PSGallery -Verbose
+          run: Publish-Module -Path .\Icons.Tabler\output\Universal.Icons.Tabler -NuGetApiKey $ENV:NUGETAPIKEY -Repository PSGallery -Verbose
           shell: pwsh
           env:
             NUGETAPIKEY: ${{ secrets.NuGetApiKey }}
