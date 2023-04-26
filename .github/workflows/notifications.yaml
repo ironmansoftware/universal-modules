@@ -10,7 +10,10 @@ jobs:
           with:
             fetch-depth: 0
         - name: Publish
-          run: Publish-Module -Path .\Notifications\Universal.Notifications -NuGetApiKey $ENV:NUGETAPIKEY -Repository PSGallery -Verbose
+          run: 
+            Install-Module PSHtml -Force
+            Install-Module PSTeams -Force
+            Publish-Module -Path .\Notifications\Universal.Notifications -NuGetApiKey $ENV:NUGETAPIKEY -Repository PSGallery -Verbose
           shell: pwsh
           env:
             NUGETAPIKEY: ${{ secrets.PSGALLERYKEY }}
