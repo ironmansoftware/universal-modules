@@ -12,7 +12,7 @@
     RootModule        = '.\Universal.Notifications.psm1'
 
     # Version number of this module.
-    ModuleVersion     = '0.0.1'
+    ModuleVersion     = '0.0.2'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -69,7 +69,7 @@
     # NestedModules = @()
 
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-    FunctionsToExport = @('Send-PSUFailedJobSlackNotification', "Send-PSUFailedJobEmail")
+    FunctionsToExport = @('Send-PSUFailedJobSlackNotification', "Send-PSUFailedJobEmail", 'Send-PSUFailedJobTeamsNotification')
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     #CmdletsToExport   = '*'
@@ -87,7 +87,7 @@
     # ModuleList = @()
 
     # List of all files packaged with this module
-    # FileList = @()
+    FileList          = @(".universal\scripts.ps1")
 
     # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
     PrivateData       = @{
