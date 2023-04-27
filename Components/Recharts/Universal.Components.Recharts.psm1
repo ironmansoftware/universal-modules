@@ -19,8 +19,11 @@ function New-UDRechart {
     param(
         [Parameter()]
         [string]$Id = (New-Guid).ToString(),
-        [Parameter(Mandatory)]
+        [Parameter()]
         $Data,
+        [Parameter(Mandatory)]
+        [ValidateSet("area", "line", "bar", 'pie')]
+        [string]$Type,
         [Parameter()]
         [Validateset('horizontal', 'vertical')]
         [string]$Layout = 'horizontal',
@@ -63,6 +66,7 @@ function New-UDRechart {
             baseValue   = $BaseValue
             children    = & $Children
             onClick     = $OnClick
+            chartType   = $Type.ToLower()
 
         }
     }
@@ -173,5 +177,88 @@ function New-UDRechartArea {
         stroke   = $Stroke
         fill     = $Fill
         areaType = $Type
+    }
+}
+
+function New-UDRechartLine {
+    param(
+        [Parameter()]
+        [string]$Id = (New-Guid).ToString(),
+        [Parameter()]
+        [string]$DataKey,
+        [Parameter()]
+        [string]$Stroke
+    )
+
+    @{
+        type     = "ud-rechart-line"
+        id       = $Id
+        assetId  = $AssetId
+        isPlugin = $true
+
+        dataKey  = $DataKey
+        stroke   = $Stroke
+    }
+}
+
+
+function New-UDRechartBar {
+    param(
+        [Parameter()]
+        [string]$Id = (New-Guid).ToString(),
+        [Parameter()]
+        [string]$DataKey,
+        [Parameter()]
+        [string]$Fill
+    )
+
+    @{
+        type     = "ud-rechart-bar"
+        id       = $Id
+        assetId  = $AssetId
+        isPlugin = $true
+
+        dataKey  = $DataKey
+        fill     = $Fill
+    }
+}
+
+function New-UDRechartPie {
+    param(
+        [Parameter()]
+        [string]$Id = (New-Guid).ToString(),
+        [Parameter()]
+        [string]$DataKey,
+        [Parameter()]
+        $Data,
+        [Parameter()]
+        [string]$Fill,
+        [Parameter()]
+        [string]$Cx,
+        [Parameter()]
+        [string]$Cy,
+        [Parameter()]
+        [int]$OuterRadius,
+        [Parameter()]
+        [int]$InnerRadius,
+        [Parameter()]
+        [Switch]$Label
+        
+    )
+
+    @{
+        type        = "ud-rechart-pie"
+        id          = $Id
+        assetId     = $AssetId
+        isPlugin    = $true
+
+        data        = $Data
+        dataKey     = $DataKey
+        fill        = $Fill
+        cx          = $Cx
+        cy          = $Cy
+        outerRadius = $OuterRadius
+        innerRadius = $InnerRadius
+        label       = $Label.IsPresent
     }
 }

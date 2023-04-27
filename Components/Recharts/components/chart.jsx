@@ -1,6 +1,19 @@
 import React from 'react';
 import { withComponentFeatures } from 'universal-dashboard'
-import { AreaChart, CartesianGrid, Area, Legend, XAxis, YAxis } from 'recharts';
+import {
+    LineChart,
+    AreaChart,
+    BarChart,
+    CartesianGrid,
+    Area,
+    Legend,
+    XAxis,
+    YAxis,
+    Line,
+    Bar,
+    PieChart,
+    Pie
+} from 'recharts';
 
 const renderFeature = (feature, props) => {
     switch (feature) {
@@ -14,6 +27,12 @@ const renderFeature = (feature, props) => {
             return <Area type={props.areaType} dataKey={props.dataKey} fill={props.fill} stroke={props.stroke} />
         case 'ud-rechart-legend':
             return <Legend />
+        case 'ud-rechart-line':
+            return <Line type={props.lineType} dataKey={props.dataKey} stroke={props.stroke} />
+        case 'ud-rechart-bar':
+            return <Bar dataKey={props.dataKey} fill={props.fill} />
+        case 'ud-rechart-pie':
+            return <Pie data={props.data} dataKey={props.dataKey} fill={props.fill} cx={props.cx} cy={props.cy} label={props.label} innerRadius={props.innerRadius} outerRadius={props.outerRadius} />
         default:
 
             return null;
@@ -21,19 +40,26 @@ const renderFeature = (feature, props) => {
 }
 
 const UDComponent = props => {
-    const children = props.render(props.children);
+    const chartProps = {
+        width: props.width,
+        height: props.height,
+        data: props.data,
+        margin: props.margin
+    }
 
-    return (
-        <AreaChart
-            width={props.width}
-            height={props.height}
-            data={props.data}
-            margin={props.margin}
-        >
-            <CartesianGrid strokeDasharray="3 3" />
-            {props.children.map((child) => renderFeature(child.type, child))}
-        </AreaChart>
-    );
+    const children = props.children.map((child) => renderFeature(child.type, child))
+
+    switch (props.chartType) {
+        case 'line':
+            return <LineChart {...chartProps}>{children}</LineChart>
+        case 'area':
+            return <AreaChart {...chartProps}>{children}</AreaChart>
+        case 'bar':
+            return <BarChart {...chartProps}>{children}</BarChart>
+        case 'pie':
+            return <PieChart {...chartProps}>{children}</PieChart>
+
+    }
 }
 
 export default withComponentFeatures(UDComponent)

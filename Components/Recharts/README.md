@@ -12,6 +12,8 @@ Install-Module Universal.Components.Calendar
 
 ## Usage
 
+### Area Chart
+
 ```powershell
 $Data = "[
   {
@@ -58,13 +60,157 @@ $Data = "[
   },
 ]" | ConvertFrom-Json
 
-New-UDRechart -Data $Data -Content {
+New-UDRechart -Type 'Area' -Data $Data -Content {
         New-UDRechartAxis -Axis "x" -DataKey "name"
         New-UDRechartAxis -Axis "y"
         New-UDRechartLegend
         New-UDRechartArea -Type 'monotone' -DataKey 'uv' -stroke "#8884d8" -fill "#444fff" 
 } -Height 500 -Width 500
+```
 
+### Bar Chart
+
+```powershell
+$Data = "[
+  {
+    name: 'Page A',
+    uv: 4000,
+    pv: 2400,
+    amt: 2400,
+  },
+  {
+    name: 'Page B',
+    uv: 3000,
+    pv: 1398,
+    amt: 2210,
+  },
+  {
+    name: 'Page C',
+    uv: 2000,
+    pv: 9800,
+    amt: 2290,
+  },
+  {
+    name: 'Page D',
+    uv: 2780,
+    pv: 3908,
+    amt: 2000,
+  },
+  {
+    name: 'Page E',
+    uv: 1890,
+    pv: 4800,
+    amt: 2181,
+  },
+  {
+    name: 'Page F',
+    uv: 2390,
+    pv: 3800,
+    amt: 2500,
+  },
+  {
+    name: 'Page G',
+    uv: 3490,
+    pv: 4300,
+    amt: 2100,
+  },
+]" | ConvertFrom-Json
+
+New-UDRechart -Type 'Bar' -Data $Data -Content {
+        New-UDRechartAxis -Axis "x" -DataKey "name"
+        New-UDRechartAxis -Axis "y"
+        New-UDRechartLegend
+        New-UDRechartBar -DataKey 'uv' -fill "#8884d8" 
+        New-UDRechartBar -DataKey 'pv' -fill "#82ca9d" 
+} -Height 500 -Width 500
+```
+
+
+### Line Chart
+
+```powershell
+$Data = "[
+  {
+    name: 'Page A',
+    uv: 4000,
+    pv: 2400,
+    amt: 2400,
+  },
+  {
+    name: 'Page B',
+    uv: 3000,
+    pv: 1398,
+    amt: 2210,
+  },
+  {
+    name: 'Page C',
+    uv: 2000,
+    pv: 9800,
+    amt: 2290,
+  },
+  {
+    name: 'Page D',
+    uv: 2780,
+    pv: 3908,
+    amt: 2000,
+  },
+  {
+    name: 'Page E',
+    uv: 1890,
+    pv: 4800,
+    amt: 2181,
+  },
+  {
+    name: 'Page F',
+    uv: 2390,
+    pv: 3800,
+    amt: 2500,
+  },
+  {
+    name: 'Page G',
+    uv: 3490,
+    pv: 4300,
+    amt: 2100,
+  },
+]" | ConvertFrom-Json
+
+New-UDRechart -Type 'Line' -Data $Data -Content {
+        New-UDRechartAxis -Axis "x" -DataKey "name"
+        New-UDRechartAxis -Axis "y"
+        New-UDRechartLegend
+        New-UDRechartLine -DataKey 'uv' -stroke "#8884d8" 
+        New-UDRechartLine -DataKey 'pv' -stroke "#82ca9d" 
+} -Height 500 -Width 500
+```
+
+### Pie Chart
+
+```powershell
+$data01 = "[
+  { name: 'Group A', value: 400 },
+  { name: 'Group B', value: 300 },
+  { name: 'Group C', value: 300 },
+  { name: 'Group D', value: 200 },
+]" | ConvertFrom-Json
+
+$data02 = "[
+  { name: 'A1', value: 100 },
+  { name: 'A2', value: 300 },
+  { name: 'B1', value: 100 },
+  { name: 'B2', value: 80 },
+  { name: 'B3', value: 40 },
+  { name: 'B4', value: 30 },
+  { name: 'B5', value: 50 },
+  { name: 'C1', value: 100 },
+  { name: 'C2', value: 200 },
+  { name: 'D1', value: 150 },
+  { name: 'D2', value: 50 },
+]" | ConvertFrom-Json
+
+New-UDRechart -Type 'Pie' -Height 500 -Width 500 -Content {
+  New-UDRechartPie -Data $data01 -dataKey 'value' -Cx '50%' -Cy '50%' -OuterRadius 60 -Fill "#8884d8"
+  New-UDRechartPie -Data $data02 -dataKey 'value' -Cx '50%' -Cy '50%' -InnerRadius 70 -OuterRadius 90 -Fill "#82ca9d" -Label
+}
 ```
 
 ## Development

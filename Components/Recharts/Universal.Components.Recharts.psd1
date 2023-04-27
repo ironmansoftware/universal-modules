@@ -61,7 +61,15 @@
     # NestedModules = @()
     
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-    FunctionsToExport = @('New-UDRechart', 'New-UDRechartLegend', 'New-UDRechartAxis', "New-UDRechartArea")
+    FunctionsToExport = @(
+        'New-UDRechart', 
+        'New-UDRechartLegend', 
+        'New-UDRechartAxis', 
+        "New-UDRechartArea",
+        'New-UDRechartLine',
+        'New-UDRechartBar',
+        'New-UDRechartPie'
+    )
     
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     # CmdletsToExport   = '*'
@@ -87,13 +95,13 @@
         PSData = @{
     
             # Tags applied to this module. These help with module discovery in online galleries.
-            Tags       = @("PowerShellUniversal", "App", "Calendar")
+            Tags       = @("PowerShellUniversal", "App", "Charts")
     
             # A URL to the license for this module.
             LicenseUri = 'https://github.com/ironmansoftware/universal-icons/blob/main/LICENSE'
     
             # A URL to the main website for this project.
-            ProjectUri = 'https://github.com/ironmansoftware/universal-modules/tree/main/Components/Calendar'
+            ProjectUri = 'https://github.com/ironmansoftware/universal-modules/tree/main/Components/Recharts'
     
             # A URL to an icon representing this module.
             IconUri    = 'https://www.ironmansoftware.com/img/ps-icon.svg'

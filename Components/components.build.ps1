@@ -78,8 +78,12 @@ task Calendar {
     Invoke-Build -File "$PSScriptRoot\Calendar\component.build.ps1"
 }
 
+task Recharts {
+    Invoke-Build -File "$PSScriptRoot\Recharts\component.build.ps1"
+}
+
 task TinyMCE {
     Invoke-Build -File "$PSScriptRoot\TinyMCE\component.build.ps1"
 }
 
-task . MaterialDesign, Feather, Bootstrap, Tabler, Calendar, TinyMCE
+task . MaterialDesign, Feather, Bootstrap, Tabler, Calendar, TinyMCE, Recharts
