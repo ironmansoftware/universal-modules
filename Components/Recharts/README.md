@@ -7,7 +7,7 @@ A chart component built on Recharts for PowerShell Universal Apps.
 You can install this component as a PowerShell module using PowerShellGet or via PowerShell Universal.
 
 ```powershell
-Install-Module Universal.Components.Calendar
+Install-Module Universal.Components.Recharts
 ```
 
 ## Usage
