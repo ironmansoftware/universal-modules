@@ -293,3 +293,17 @@ function New-UDRechartScatter {
         name     = $Name
     }
 }
+
+function New-UDRechartTooltip {
+    param(
+        [Parameter()]
+        [string]$Id = (New-Guid).ToString()
+    )
+
+    @{
+        type     = "ud-rechart-tooltip"
+        id       = $Id
+        assetId  = $AssetId
+        isPlugin = $true
+    }
+}

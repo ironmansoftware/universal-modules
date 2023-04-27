@@ -226,6 +226,7 @@ $data = "[
 ]" | ConvertFrom-Json
 
 New-UDRechart -Type 'Scatter' -Height 500 -Width 500 -Content {
+  New-UDRechartTooltip
   New-UDRechartAxis -Axis "x" -DataKey "x" -Type 'number' -Name 'stature' -Unit 'cm'
   New-UDRechartAxis -Axis "y" -Type 'number' -Name 'weight' -Unit 'kg'
   New-UDRechartScatter -Name 'A school' -Data $data -Fill "#8884d8"
