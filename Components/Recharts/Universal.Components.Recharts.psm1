@@ -128,7 +128,7 @@ function New-UDRechartAxis {
         [string]$DataKey,
         [Parameter()]
         [ValidateSet('number', 'category')]
-        [string]$Type = 'category',
+        [string]$Type,
         [Parameter()]
         [string]$Unit,
         [Parameter()]
@@ -145,7 +145,7 @@ function New-UDRechartAxis {
         dataKey  = $DataKey
         xAxisId  = $Id
         yAxisId  = $Id
-        axisType = $Type.ToLower()
+        axisType = if ($Type) { $Type.ToLower() } else { $null }
         axis     = $Axis.ToLower()
         unit     = $Unit
         name     = $Name

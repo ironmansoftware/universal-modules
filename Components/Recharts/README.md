@@ -61,8 +61,8 @@ $Data = "[
 ]" | ConvertFrom-Json
 
 New-UDRechart -Type 'Area' -Data $Data -Content {
-        New-UDRechartAxis -Axis "x" -DataKey "name"
-        New-UDRechartAxis -Axis "y"
+        New-UDRechartAxis -Axis "x" -DataKey "name" -Type 'category'
+        New-UDRechartAxis -Axis "y" -Type 'number'
         New-UDRechartLegend
         New-UDRechartArea -Type 'monotone' -DataKey 'uv' -stroke "#8884d8" -fill "#444fff" 
 } -Height 500 -Width 500
@@ -117,8 +117,8 @@ $Data = "[
 ]" | ConvertFrom-Json
 
 New-UDRechart -Type 'Bar' -Data $Data -Content {
-        New-UDRechartAxis -Axis "x" -DataKey "name"
-        New-UDRechartAxis -Axis "y"
+        New-UDRechartAxis -Axis "x" -DataKey "name" -Type 'category'
+        New-UDRechartAxis -Axis "y" -Type 'number'
         New-UDRechartLegend
         New-UDRechartBar -DataKey 'uv' -fill "#8884d8" 
         New-UDRechartBar -DataKey 'pv' -fill "#82ca9d" 
@@ -175,8 +175,8 @@ $Data = "[
 ]" | ConvertFrom-Json
 
 New-UDRechart -Type 'Line' -Data $Data -Content {
-        New-UDRechartAxis -Axis "x" -DataKey "name"
-        New-UDRechartAxis -Axis "y"
+        New-UDRechartAxis -Axis "x" -DataKey "name" -Type 'category'
+        New-UDRechartAxis -Axis "y" -Type 'number'
         New-UDRechartLegend
         New-UDRechartLine -DataKey 'uv' -stroke "#8884d8" 
         New-UDRechartLine -DataKey 'pv' -stroke "#82ca9d" 
@@ -228,7 +228,7 @@ $data = "[
 New-UDRechart -Type 'Scatter' -Height 500 -Width 500 -Content {
   New-UDRechartTooltip
   New-UDRechartAxis -Axis "x" -DataKey "x" -Type 'number' -Name 'stature' -Unit 'cm'
-  New-UDRechartAxis -Axis "y" -Type 'number' -Name 'weight' -Unit 'kg'
+  New-UDRechartAxis -Axis "y" -DataKey "y" -Type 'number' -Name 'weight' -Unit 'kg'
   New-UDRechartScatter -Name 'A school' -Data $data -Fill "#8884d8"
 }
 ```
