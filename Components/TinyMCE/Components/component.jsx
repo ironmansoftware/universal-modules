@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { withComponentFeatures } from 'universal-dashboard'
-import BundledEditor from './BundledEditor'
+import BundledEditor from './BundledEditor';
 
 const UDComponent = props => {
   const editorRef = useRef(null);

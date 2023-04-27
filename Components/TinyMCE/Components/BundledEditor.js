@@ -1,5 +1,6 @@
 import React from 'react';
 import { Editor } from '@tinymce/tinymce-react';
+import { Helmet } from 'react-helmet';
 
 // TinyMCE so the global var exists
 // eslint-disable-next-line no-unused-vars
@@ -10,8 +11,6 @@ import 'tinymce/models/dom/model'
 import 'tinymce/themes/silver';
 // Toolbar icons
 import 'tinymce/icons/default';
-// Editor styles
-import 'tinymce/skins/ui/oxide/skin.min.css';
 
 // importing the plugin js.
 // if you use a plugin that is not listed here the editor will fail to load
@@ -53,19 +52,35 @@ import 'tinymce/plugins/emoticons/js/emojis';
 import contentCss from '!!raw-loader!tinymce/skins/content/default/content.min.css';
 import contentUiCss from '!!raw-loader!tinymce/skins/ui/oxide/content.min.css';
 
+import darkContentCss from '!!raw-loader!tinymce/skins/content/dark/content.min.css';
+import darkContentUiCss from '!!raw-loader!tinymce/skins/ui/oxide-dark/content.min.css';
+
+import skin from '!!raw-loader!tinymce/skins/ui/oxide/skin.min.css';
+import darkSkin from '!!raw-loader!tinymce/skins/ui/oxide-dark/skin.min.css';
+
 export default function BundledEditor(props) {
     const { init, ...rest } = props;
+
+    const css = localStorage.getItem("theme") === "light" ? contentCss : darkContentCss;
+    const uiCss = localStorage.getItem("theme") === "light" ? contentUiCss : darkContentUiCss;
+
     // note that skin and content_css is disabled to avoid the normal
     // loading process and is instead loaded as a string via content_style
     return (
-        <Editor
-            init={{
-                ...init,
-                skin: false,
-                content_css: false,
-                content_style: [contentCss, contentUiCss, init.content_style || ''].join('\n'),
-            }}
-            {...rest}
-        />
+        <>
+            <Helmet>
+                <style>{localStorage.getItem("theme") === "light" ? skin : darkSkin}</style>
+            </Helmet>
+            <Editor
+                init={{
+                    ...init,
+                    skin: false,
+                    content_css: false,
+                    content_style: [css, uiCss, init.content_style || ''].join('\n'),
+                }}
+                {...rest}
+            />
+        </>
+
     );
 }

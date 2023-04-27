@@ -1,6 +1,14 @@
 $IndexJs = Get-ChildItem "$PSScriptRoot\index.*.bundle.js"
 $AssetId = [UniversalDashboard.Services.AssetService]::Instance.RegisterAsset($IndexJs.FullName)
 
+Get-ChildItem "$PSScriptRoot\*.bundle.js" | ForEach-Object {
+    if ($_.Name -eq $IndexJS.Name) {
+        return
+    }
+    [UniversalDashboard.Services.AssetService]::Instance.RegisterAsset($_.FullName) | Out-Null
+}
+
+
 function New-UDTinyMCE {
     param(
         [Parameter()]

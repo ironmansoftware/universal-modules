@@ -12,6 +12,7 @@
     "@tinymce/tinymce-react": "^4.1.0",
     "fs-extra": "^10.1.0",
     "raw-loader": "^4.0.2",
+    "react-helmet": "^6.1.0",
     "tinymce": "^6.1.0",
     "universal-dashboard": "^1.0.1"
   },
