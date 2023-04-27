@@ -29,7 +29,7 @@ function New-UDRechart {
         [Parameter()]
         [int]$Height = 500,
         [Parameter()]
-        [Hashtable]$Margin,
+        [Hashtable]$Margin = @{ top = 10; right = 30; bottom = 0; left = 0 },
         [Parameter()]
         [ValidateSet('expand', 'none', 'wiggle', 'silhouette')]
         [string]$StackOffset = 'none',
@@ -56,8 +56,8 @@ function New-UDRechart {
 
             data        = $Data
             layout      = $Layout.ToLower()
-            width       = if ($PSBoundParameters.ContainsKey('Width')) { $Width } else { $null }
-            height      = if ($PSBoundParameters.ContainsKey('Height')) { $Height } else { $null }
+            width       = $Width
+            height      = $Height
             margin      = $Margin
             stackOffset = $StackOffset
             baseValue   = $BaseValue
@@ -139,5 +139,39 @@ function New-UDRechartAxis {
         yAxisId  = $Id
         axisType = $Type.ToLower()
         axis     = $Axis.ToLower()
+    }
+}
+
+function New-UDRechartArea {
+    param(
+        [Parameter()]
+        [string]$Id = (New-Guid).ToString(),
+        [Parameter()]
+        [string]$DataKey,
+        [Parameter()]
+        [string]$XAxisId,
+        [Parameter()]
+        [string]$YAxisId,
+        [Parameter()]
+        [string]$Stroke,
+        [Parameter()]
+        [string]$Fill,
+        [Parameter()]
+        [ValidateSet('basis' , 'basisClosed' , 'basisOpen' , 'linear' , 'linearClosed' , 'natural' , 'monotoneX' , 'monotoneY' , 'monotone' , 'step' , 'stepBefore' , 'stepAfter' )]
+        [string]$Type = 'linear'
+    )
+
+    @{
+        type     = "ud-rechart-area"
+        id       = $Id
+        assetId  = $AssetId
+        isPlugin = $true
+
+        dataKey  = $DataKey
+        xAxisId  = $XAxisId
+        yAxisId  = $YAxisId
+        stroke   = $Stroke
+        fill     = $Fill
+        areaType = $Type
     }
 }

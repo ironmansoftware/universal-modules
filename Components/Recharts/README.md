@@ -58,7 +58,7 @@ $Data = "[
   },
 ]" | ConvertFrom-Json
 
-New-UDRechart -Data -Content {
+New-UDRechart -Data $Data -Content {
         New-UDRechartAxis -Axis "x" -DataKey "name"
         New-UDRechartAxis -Axis "y"
         New-UDRechartLegend
