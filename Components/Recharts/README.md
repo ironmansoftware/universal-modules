@@ -62,7 +62,9 @@ New-UDRechart -Data $Data -Content {
         New-UDRechartAxis -Axis "x" -DataKey "name"
         New-UDRechartAxis -Axis "y"
         New-UDRechartLegend
-}
+        New-UDRechartArea -Type 'monotone' -DataKey 'uv' -stroke "#8884d8" -fill "#444fff" 
+} -Height 500 -Width 500
+
 ```
 
 ## Development
