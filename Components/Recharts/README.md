@@ -213,6 +213,25 @@ New-UDRechart -Type 'Pie' -Height 500 -Width 500 -Content {
 }
 ```
 
+### Scatter Chart
+
+```powershell
+$data = "[
+  { x: 100, y: 200, z: 200 },
+  { x: 120, y: 100, z: 260 },
+  { x: 170, y: 300, z: 400 },
+  { x: 140, y: 250, z: 280 },
+  { x: 150, y: 400, z: 500 },
+  { x: 110, y: 280, z: 200 },
+]" | ConvertFrom-Json
+
+New-UDRechart -Type 'Scatter' -Height 500 -Width 500 -Content {
+  New-UDRechartAxis -Axis "x" -DataKey "x" -Type 'number' -Name 'stature' -Unit 'cm'
+  New-UDRechartAxis -Axis "y" -Type 'number' -Name 'weight' -Unit 'kg'
+  New-UDRechartScatter -Name 'A school' -Data $data -Fill "#8884d8"
+}
+```
+
 ## Development
 
 You will need NodeJS version 16.13.2 and the InvokeBuild module installed to build this module. 

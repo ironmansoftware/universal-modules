@@ -12,16 +12,18 @@ import {
     Line,
     Bar,
     PieChart,
-    Pie
+    Pie,
+    ScatterChart,
+    Scatter
 } from 'recharts';
 
 const renderFeature = (feature, props) => {
     switch (feature) {
         case 'ud-rechart-axis':
             if (props.axis === 'x') {
-                return <XAxis dataKey={props.dataKey} />
+                return <XAxis dataKey={props.dataKey} type={props.axisType} name={props.name} unit={props.unit} />
             } else {
-                return <YAxis />
+                return <YAxis type={props.axisType} name={props.name} unit={props.unit} />
             }
         case 'ud-rechart-area':
             return <Area type={props.areaType} dataKey={props.dataKey} fill={props.fill} stroke={props.stroke} />
@@ -33,6 +35,8 @@ const renderFeature = (feature, props) => {
             return <Bar dataKey={props.dataKey} fill={props.fill} />
         case 'ud-rechart-pie':
             return <Pie data={props.data} dataKey={props.dataKey} fill={props.fill} cx={props.cx} cy={props.cy} label={props.label} innerRadius={props.innerRadius} outerRadius={props.outerRadius} />
+        case 'ud-rechart-scatter':
+            return <Scatter data={props.data} name={props.name} fill={props.fill} />
         default:
 
             return null;
@@ -58,6 +62,8 @@ const UDComponent = props => {
             return <BarChart {...chartProps}>{children}</BarChart>
         case 'pie':
             return <PieChart {...chartProps}>{children}</PieChart>
+        case 'scatter':
+            return <ScatterChart {...chartProps}>{children}</ScatterChart>
 
     }
 }

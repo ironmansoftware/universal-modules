@@ -22,7 +22,7 @@ function New-UDRechart {
         [Parameter()]
         $Data,
         [Parameter(Mandatory)]
-        [ValidateSet("area", "line", "bar", 'pie')]
+        [ValidateSet("area", "line", "bar", 'pie', 'scatter')]
         [string]$Type,
         [Parameter()]
         [Validateset('horizontal', 'vertical')]
@@ -128,7 +128,11 @@ function New-UDRechartAxis {
         [string]$DataKey,
         [Parameter()]
         [ValidateSet('number', 'category')]
-        [string]$Type = 'category'
+        [string]$Type = 'category',
+        [Parameter()]
+        [string]$Unit,
+        [Parameter()]
+        [string]$Name
     )
 
     @{
@@ -143,6 +147,8 @@ function New-UDRechartAxis {
         yAxisId  = $Id
         axisType = $Type.ToLower()
         axis     = $Axis.ToLower()
+        unit     = $Unit
+        name     = $Name
     }
 }
 
@@ -260,5 +266,30 @@ function New-UDRechartPie {
         outerRadius = $OuterRadius
         innerRadius = $InnerRadius
         label       = $Label.IsPresent
+    }
+}
+
+function New-UDRechartScatter {
+    param(
+        [Parameter()]
+        [string]$Id = (New-Guid).ToString(),
+        [Parameter()]
+        $Data,
+        [Parameter()]
+        [string]$Name,
+        [Parameter()]
+        [string]$Fill
+        
+    )
+
+    @{
+        type     = "ud-rechart-scatter"
+        id       = $Id
+        assetId  = $AssetId
+        isPlugin = $true
+
+        data     = $Data
+        fill     = $Fill
+        name     = $Name
     }
 }
