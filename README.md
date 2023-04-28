@@ -12,6 +12,7 @@ Additional components to add to your PowerShell Universal apps.
 - [Material Design Icons](/Components/Icons.MaterialDesign/)
 - [Tabler Icons](/Components/Icons.Tabler/)
 - [TinyMCE](/Components/TinyMCE)
+- [Recharts](/Components/Recharts)
 
 ## [Notifications](/Notifications/Universal.Notifications/README.md)
 
