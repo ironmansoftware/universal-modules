@@ -9,6 +9,7 @@ Additional components to add to your PowerShell Universal apps.
 - [Bootstrap Icons](/Components/Icons.Bootstrap/)
 - [Calendar](/Components/Calendar/)
 - [Feather Icons](/Components/Icons.Feather/)
+- [Joyride](/Components/Joyride/)
 - [Material Design Icons](/Components/Icons.MaterialDesign/)
 - [Tabler Icons](/Components/Icons.Tabler/)
 - [TinyMCE](/Components/TinyMCE)

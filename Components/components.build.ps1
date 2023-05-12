@@ -86,4 +86,9 @@ task TinyMCE {
     Invoke-Build -File "$PSScriptRoot\TinyMCE\component.build.ps1"
 }
 
-task . MaterialDesign, Feather, Bootstrap, Tabler, Calendar, TinyMCE, Recharts
+task Joyride {
+    Invoke-Build -File "$PSScriptRoot\Joyride\component.build.ps1"
+}
+
+
+task . MaterialDesign, Feather, Bootstrap, Tabler, Calendar, TinyMCE, Recharts, Joyride
