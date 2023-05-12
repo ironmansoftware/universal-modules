@@ -1,5 +1,5 @@
 task Build {
-    $OutputPath = "$PSScriptRoot\output\Universal.Components.Joyright"
+    $OutputPath = "$PSScriptRoot\output\Universal.Components.Joyride"
     Remove-Item -Path $OutputPath -Force -ErrorAction SilentlyContinue -Recurse
     Remove-Item -Path "$PSScriptRoot\public" -Force -ErrorAction SilentlyContinue -Recurse	
     Set-Location "$PSScriptRoot"
