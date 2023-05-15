@@ -37,7 +37,9 @@ function New-UDBootstrapIcon {
         [Parameter()]
         [Hashtable]$Style,
         [Parameter()]
-        [string]$ClassName
+        [string]$ClassName,
+        [Parameter()]
+        [string]$Size
     )
     
     End {
@@ -50,6 +52,7 @@ function New-UDBootstrapIcon {
             icon      = $icon
             style     = $Style
             className = $ClassName
+            size = $Size
         }
     }
 }
