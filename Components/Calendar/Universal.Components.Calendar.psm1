@@ -30,7 +30,10 @@ function New-UDCalendar {
         [Parameter()]
         [Switch]$HideDayHeader,
         [Parameter()]
-        [DateTime]$InitialDate = (Get-Date)
+        [DateTime]$InitialDate = (Get-Date),
+        [Parameter()]
+        [ValidateSet("de", "it", "fr", "es")]
+        [string]$Locale
     )
     
     End {
@@ -52,6 +55,7 @@ function New-UDCalendar {
             dayHeaders  = -not $HideDayHeader.IsPresent
             initialDate = $InitialDate
             view        = $View
+            locale      = if ($Locale) { $Locale.ToLower() } else { $null }
         }
     }
 }
@@ -85,7 +89,7 @@ function New-UDCalendarEvent {
     param(
         [Parameter()]
         [string]$Id = (New-Guid).ToString(), 
-        [Parameter()]
+        [Parameter(ParameterSetName = 'Title')]
         [string]$Title,
         [Parameter()]
         [DateTime]$Start = (Get-Date),
@@ -102,7 +106,9 @@ function New-UDCalendarEvent {
         [Parameter()]
         [string]$BorderColor,
         [Parameter()]
-        [string]$TextColor
+        [string]$TextColor,
+        [Parameter(ParameterSetName = 'Content')]
+        [ScriptBlock]$Content
     )
 
     @{
@@ -116,5 +122,6 @@ function New-UDCalendarEvent {
         backgroundColor = $BackgroundColor
         borderColor     = $BorderColor
         textColor       = $TextColor
+        content         = if ($Content) { & $Content } else { $null }
     }
 }

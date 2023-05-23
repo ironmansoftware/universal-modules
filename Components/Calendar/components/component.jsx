@@ -1,4 +1,5 @@
 import React from 'react';
+import { h } from 'preact';
 import { withComponentFeatures } from 'universal-dashboard'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
@@ -6,6 +7,8 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import multimonthPlugin from '@fullcalendar/multimonth'
 import listPlugin from '@fullcalendar/list'
 import interactionPlugin from '@fullcalendar/interaction';
+
+import allLocales from '@fullcalendar/core/locales-all';
 
 const UDComponent = props => {
 
@@ -18,6 +21,13 @@ const UDComponent = props => {
         })
     }
 
+    const renderEventContent = (arg) => {
+        if (arg.event.extendedProps.content) {
+            return props.render(arg.event.extendedProps.content)
+        }
+        return <i>{arg.event.title}</i>
+    }
+
     return (
         <FullCalendar
             plugins={[
@@ -27,6 +37,8 @@ const UDComponent = props => {
                 listPlugin,
                 multimonthPlugin
             ]}
+            locales={allLocales}
+            locale={props.locale}
             initialView={props.view}
             events={props.events}
             dateClick={dateClicked}
@@ -34,6 +46,7 @@ const UDComponent = props => {
             hiddenDays={props.hiddenDays}
             dayHeaders={props.dayHeaders}
             initialDate={props.initialDate}
+            eventContent={renderEventContent}
         />
     )
 }

@@ -18,6 +18,7 @@
         "@fullcalendar/multimonth": "^6.1.6",
         "@fullcalendar/react": "^6.1.6",
         "@fullcalendar/timegrid": "^6.1.6",
+        "preact": "^10.15.0",
         "universal-dashboard": "^1.0.1"
     },
     "devDependencies": {

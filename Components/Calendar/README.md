@@ -12,6 +12,21 @@ Install-Module Universal.Components.Calendar
 
 ## Usage
 
+### Basic
+
+A basic calendar with events. 
+
+```powershell
+New-UDCalendar -Events @(
+        New-UDCalendarEvent -Title "Run"
+        New-UDCalendarEvent -Title "Run" -Start ((Get-Date).AddDays(1)) -AllDay
+) 
+```
+
+### DateClicked
+
+An event handler that is fired when a date is clicked.
+
 ```powershell
 New-UDCalendar -Events @(
         New-UDCalendarEvent -Title "Run"
@@ -19,6 +34,30 @@ New-UDCalendar -Events @(
 ) -DateClicked {
         Show-UDToast $Body
 }
+```
+
+### Locale
+
+Localization of the calendar. 
+
+```powershell
+New-UDCalendar -Events @(
+        New-UDCalendarEvent -Title "Run"
+        New-UDCalendarEvent -Title "Run" -Start ((Get-Date).AddDays(1)) -AllDay
+) -Locale 'fr'
+```
+
+### Custom Event Rendering
+
+Use the `-Content` parameter of `New-UDCalendarEvent` to customize the rendering of an event. 
+
+```powershell
+New-UDCalendar -Events @(
+        New-UDCalendarEvent -Content {
+                New-UDAlert -Text 'Swim'
+        }
+        New-UDCalendarEvent -Title "Run" -Start ((Get-Date).AddDays(1)) -AllDay
+) 
 ```
 
 ## Development
