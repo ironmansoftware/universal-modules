@@ -21,11 +21,16 @@ const UDComponent = props => {
         })
     }
 
+    const eventClicked = (arg) => {
+        if (props.eventClicked == null) return
+        props.eventClicked(arg.event)
+    }
+
     const renderEventContent = (arg) => {
         if (arg.event.extendedProps.content) {
             return props.render(arg.event.extendedProps.content)
         }
-        return <i onClick={() => dateClicked(arg.event)}>{arg.event.title}</i>
+        return <i style={{ cursor: "pointer" }}>{arg.event.title}</i>
     }
 
     return (
@@ -47,6 +52,7 @@ const UDComponent = props => {
             dayHeaders={props.dayHeaders}
             initialDate={props.initialDate}
             eventContent={renderEventContent}
+            eventClick={eventClicked}
         />
     )
 }

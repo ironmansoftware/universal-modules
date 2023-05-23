@@ -40,6 +40,21 @@ New-UDCalendar -Events @(
 
 ![](./images/onClick.png)
 
+### EventClicked
+
+An event handler that is fired when an event is clicked.
+
+```powershell
+New-UDCalendar -Events @(
+        New-UDCalendarEvent -Title "Run"
+        New-UDCalendarEvent -Title "Run" -Start ((Get-Date).AddDays(1)) -AllDay
+) -EventClicked {
+        Show-UDToast $Body
+}
+```
+
+![](./images/onClick.png)
+
 ### Locale
 
 Localization of the calendar. 

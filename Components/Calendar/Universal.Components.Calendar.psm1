@@ -21,6 +21,8 @@ function New-UDCalendar {
         [Parameter()]
         [Endpoint]$DateClicked,
         [Parameter()]
+        [Endpoint]$EventClicked,
+        [Parameter()]
         [ValidateSet('dayGridYear', 'dayGridMonth', 'dayGridWeek', 'dayGridDay', 'timeGridWeek', 'timeGridDay', 'listWeek', 'listDay', 'listMonth', 'listYear', 'multiMonthYear')]
         [string]$View = "dayGridMonth",
         [Parameter()]
@@ -41,21 +43,26 @@ function New-UDCalendar {
             $DateClicked.Register($Id + "DateClicked", $PSCmdlet)
         }
 
-        @{
-            assetId     = $AssetId 
-            isPlugin    = $true 
-            type        = "ud-calendar"
-            id          = $Id
+        if ($EventClicked) {
+            $EventClicked.Register($Id + "EventClicked", $PSCmdlet)
+        }
 
-            events      = $Events
-            dateClicked = $DateClicked
-            renderEvent = $RenderEvent
-            weekends    = -not $HideWeekends.IsPresent
-            hiddenDays  = $HiddenDays
-            dayHeaders  = -not $HideDayHeader.IsPresent
-            initialDate = $InitialDate
-            view        = $View
-            locale      = if ($Locale) { $Locale.ToLower() } else { $null }
+        @{
+            assetId      = $AssetId 
+            isPlugin     = $true 
+            type         = "ud-calendar"
+            id           = $Id
+
+            events       = $Events
+            dateClicked  = $DateClicked
+            renderEvent  = $RenderEvent
+            weekends     = -not $HideWeekends.IsPresent
+            hiddenDays   = $HiddenDays
+            dayHeaders   = -not $HideDayHeader.IsPresent
+            initialDate  = $InitialDate
+            view         = $View
+            locale       = if ($Locale) { $Locale.ToLower() } else { $null }
+            eventClicked = $EventClicked
         }
     }
 }
