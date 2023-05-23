@@ -1,0 +1,1 @@
+New-PSUDashboard -Name 'Active Directory' -BaseUrl '/active-directory' -Module 'Universal.Apps.ActiveDirectory' -Command 'New-UDActiveDirectoryApp' -Role @("Administrator", "AD Admin", "AD Users", "AD Groups")
