@@ -315,3 +315,133 @@ function Show-UDThemeColorViewer {
 
     } -FullWidth -MaxWidth xl
 }
+
+Function ConvertTo-UDJson {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
+        [AllowNull()]
+        [object]
+        $InputObject,
+
+        [Parameter(Mandatory = $true)]
+        [int]
+        $Depth
+    )
+
+    begin {
+        $childDepth = $Depth - 1
+
+        $isType = {
+            [CmdletBinding()]
+            param (
+                [Object]
+                $InputObject,
+
+                [Type]
+                $Type
+            )
+
+            if ($InputObject -is $Type) {
+                return $true
+            }
+
+            $psTypes = @($InputObject.PSTypeNames | ForEach-Object -Process {
+                    $_ -replace '^Deserialized.'
+                })
+
+            $Type.FullName -in $psTypes
+        }
+    }
+
+    process {
+        if ($null -eq $InputObject) {
+            $null
+        }
+        elseif ((&$isType -InputObject $InputObject -Type ([Enum])) -and $Depth -ge 0) {
+            # ToString() gives the human readable value but I thought it better to give some more context behind
+            # these types.
+            @{
+                Type   = ($InputObject.PSTypeNames[0] -replace '^Deserialized.')
+                String = $InputObject.ToString()
+                Value  = [int]$InputObject
+            }
+        }
+        elseif ($InputObject -is [DateTime]) {
+            # The offset is based on the Kind value
+            # Unspecified leaves it off
+            # UTC set it to Z
+            # Local sets it to the local timezone
+            $InputObject.ToString('o')
+        }
+        elseif (&$isType -InputObject $InputObject -Type ([DateTimeOffset])) {
+            # If this is a deserialized object (from an executable) we need recreate a live DateTimeOffset
+            if ($InputObject -isnot [DateTimeOffset]) {
+                $InputObject = New-Object -TypeName DateTimeOffset $InputObject.DateTime, $InputObject.Offset
+            }
+            $InputObject.ToString('o')
+        }
+        elseif (&$isType -InputObject $InputObject -Type ([Type])) {
+            if ($Depth -lt 0) {
+                $InputObject.FullName
+            }
+            else {
+                # This type is very complex with circular properties, only return somewhat useful properties.
+                # BaseType might be a string (serialized output), try and convert it back to a Type if possible.
+                $baseType = $InputObject.BaseType -as [Type]
+                if ($baseType) {
+                    $baseType = Convert-OutputObject -InputObject $baseType -Depth $childDepth
+                }
+
+                @{
+                    Name                  = $InputObject.Name
+                    FullName              = $InputObject.FullName
+                    AssemblyQualifiedName = $InputObject.AssemblyQualifiedName
+                    BaseType              = $baseType
+                }
+            }
+        }
+        elseif ($InputObject -is [string]) {
+            $InputObject
+        }
+        elseif (&$isType -InputObject $InputObject -Type ([switch])) {
+            $InputObject.IsPresent
+        }
+        elseif ($InputObject.GetType().IsValueType) {
+            # We want to display just this value and not any properties it has (if any).
+            $InputObject
+        }
+        elseif ($Depth -lt 0) {
+            # This must occur after the above to ensure ints and other ValueTypes are preserved as is.
+            [string]$InputObject
+        }
+        elseif ($InputObject -is [Collections.IList]) {
+            , @(foreach ($obj in $InputObject) {
+                    Convert-OutputObject -InputObject $obj -Depth $childDepth
+                })
+        }
+        elseif ($InputObject -is [Collections.IDictionary]) {
+            $newObj = @{}
+
+            # Replicate ConvertTo-Json, props are replaced by keys if they share the same name. We only want ETS
+            # properties as well.
+            foreach ($prop in $InputObject.PSObject.Properties) {
+                if ($prop.MemberType -notin @('AliasProperty', 'ScriptProperty', 'NoteProperty')) {
+                    continue
+                }
+                $newObj[$prop.Name] = Convert-OutputObject -InputObject $prop.Value -Depth $childDepth
+            }
+            foreach ($kvp in $InputObject.GetEnumerator()) {
+                $newObj[$kvp.Key] = Convert-OutputObject -InputObject $kvp.Value -Depth $childDepth
+            }
+            $newObj
+        }
+        else {
+            $newObj = @{}
+            foreach ($prop in $InputObject.PSObject.Properties) {
+                $newObj[$prop.Name] = Convert-OutputObject -InputObject $prop.Value -Depth $childDepth
+            }
+            $newObj
+        }
+    }
+}
