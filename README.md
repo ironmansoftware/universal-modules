@@ -2,6 +2,11 @@
 
 PowerShell Universal modules that provide additional functionality to the platform.
 
+## Apps 
+
+- [Active Directory](/Apps/Universal.Apps.ActiveDirectory/)
+- [Windows System Information](/Apps/Universal.Apps.WindowsSystemInformation/)
+
 ## Components
 
 Additional components to add to your PowerShell Universal apps. 
