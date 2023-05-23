@@ -25,7 +25,7 @@ const UDComponent = props => {
         if (arg.event.extendedProps.content) {
             return props.render(arg.event.extendedProps.content)
         }
-        return <i>{arg.event.title}</i>
+        return <i onClick={() => dateClicked(arg.event)}>{arg.event.title}</i>
     }
 
     return (
@@ -38,7 +38,7 @@ const UDComponent = props => {
                 multimonthPlugin
             ]}
             locales={allLocales}
-            locale={props.locale}
+            locale={props.locale || 'en-us'}
             initialView={props.view}
             events={props.events}
             dateClick={dateClicked}

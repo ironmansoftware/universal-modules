@@ -23,6 +23,8 @@ New-UDCalendar -Events @(
 ) 
 ```
 
+![](./images/basic.png)
+
 ### DateClicked
 
 An event handler that is fired when a date is clicked.
@@ -36,6 +38,8 @@ New-UDCalendar -Events @(
 }
 ```
 
+![](./images/onClick.png)
+
 ### Locale
 
 Localization of the calendar. 
@@ -46,6 +50,8 @@ New-UDCalendar -Events @(
         New-UDCalendarEvent -Title "Run" -Start ((Get-Date).AddDays(1)) -AllDay
 ) -Locale 'fr'
 ```
+
+![](./images/locale.png)
 
 ### Custom Event Rendering
 
@@ -59,6 +65,8 @@ New-UDCalendar -Events @(
         New-UDCalendarEvent -Title "Run" -Start ((Get-Date).AddDays(1)) -AllDay
 ) 
 ```
+
+![](./images/customRender.png)
 
 ## Development
 
