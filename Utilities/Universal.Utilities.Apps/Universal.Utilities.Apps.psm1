@@ -123,6 +123,7 @@ function Reset-UDPage {
     Invoke-UDJavaScript "window.location.reload()"
 }
 
+
 function Show-UDObject {
     <#
     .SYNOPSIS
@@ -135,7 +136,8 @@ function Show-UDObject {
     The object to show.
     
     .EXAMPLE
-    $EventData | Show-UDObject
+    $EventData | Show-UDObject # removes the array data
+    Show-UDObject -InputObject $eventData # better way to view
     #>
     param(
         [Parameter(ValueFromPipeline, Mandatory)]
@@ -143,17 +145,25 @@ function Show-UDObject {
     )
 
     process {
-        Show-UDModal {
-            $Data = @()
-            $InputObject | Get-Member -MemberType Property | ForEach-Object {
-                $Data += [PSCustomObject]@{
-                    Key   = $_.Name
-                    Value = $InputObject."$($_.Name)"
-                } 
-            }
+        # Show-UDModal {
+        #     $Data = @()
+        #     $InputObject | Get-Member -MemberType Property | ForEach-Object {
+        #         $Data += [PSCustomObject]@{
+        #             Key   = $_.Name
+        #             Value = $InputObject."$($_.Name)"
+        #         } 
+        #     }
 
-            New-UDTable -Data $Data
-        } -MaxWidth 'xl' -FullWidth
+        #     New-UDTable -Data $Data
+        # } -MaxWidth 'xl' -FullWidth
+        Show-UDModal -Header {
+            New-UDTypography -Text $($inputObject.gettype()) -Variant h4
+        } -Content {
+            # New-UDTypography -Text "Type: $($eventdata.gettype())"
+            New-UDElement -Tag 'pre' -Content {
+                ConvertTo-Json -InputObject $inputObject
+            }
+        }
     }
 }
 
