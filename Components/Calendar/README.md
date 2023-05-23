@@ -27,7 +27,7 @@ New-UDCalendar -Events @(
 
 ### DateClicked
 
-An event handler that is fired when a date is clicked.
+An event handler that is fired when a date is clicked. `$Body` will contain a JSON string with the date. `$EventData` will contain an object with the date's properties.
 
 ```powershell
 New-UDCalendar -Events @(
@@ -42,7 +42,7 @@ New-UDCalendar -Events @(
 
 ### EventClicked
 
-An event handler that is fired when an event is clicked.
+An event handler that is fired when an event is clicked. `$Body` will contain a JSON string with the event. `$EventData` will contain an object with the event's properties.
 
 ```powershell
 New-UDCalendar -Events @(
