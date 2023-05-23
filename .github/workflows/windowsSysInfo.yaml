@@ -1,0 +1,17 @@
+name: Publish Universal.Apps.WindowsSystemInformation
+on: [workflow_dispatch]
+
+jobs:
+    build:
+      name: Build
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+          with:
+            fetch-depth: 0
+        - name: Publish
+          run: |
+            Publish-Module -Path .\Apps\Universal.Apps.WindowsSystemInformation -NuGetApiKey $ENV:NUGETAPIKEY -Repository PSGallery -Verbose
+          shell: pwsh
+          env:
+            NUGETAPIKEY: ${{ secrets.PSGALLERYKEY }}

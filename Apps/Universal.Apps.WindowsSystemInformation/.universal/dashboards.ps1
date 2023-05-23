@@ -1,0 +1,1 @@
+New-PSUDashboard -Name 'Windows System Information' -BaseUrl '/windows-sys-info' -Module 'Universal.Apps.WindowsSystemInformation' -Command 'New-UDWindowsSysInfoApp'
