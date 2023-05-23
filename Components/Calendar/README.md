@@ -53,7 +53,7 @@ New-UDCalendar -Events @(
 }
 ```
 
-![](./images/onClick.png)
+![](./images/eventClick.png)
 
 ### Locale
 
