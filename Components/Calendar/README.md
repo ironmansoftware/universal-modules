@@ -25,6 +25,17 @@ New-UDCalendar -Events @(
 
 ![](./images/basic.png)
 
+### Min\Max Time
+
+Specify the minimum and maximum time for the calendar.
+
+```powershell
+New-UDCalendar -Events @(
+        New-UDCalendarEvent -Title "Run"
+        New-UDCalendarEvent -Title "Run" -Start ((Get-Date).AddDays(1)) -AllDay
+) -View 'timeGridWeek' -SlotMinTime "08:00:00" -SlotMaxTime "19:00:00"
+```
+
 ### DateClicked
 
 An event handler that is fired when a date is clicked. `$Body` will contain a JSON string with the date. `$EventData` will contain an object with the date's properties.

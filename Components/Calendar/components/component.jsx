@@ -53,6 +53,8 @@ const UDComponent = props => {
             initialDate={props.initialDate}
             eventContent={renderEventContent}
             eventClick={eventClicked}
+            slotMinTime={props.slotMinTime}
+            slotMaxTime={props.slotMaxTime}
         />
     )
 }

@@ -35,7 +35,11 @@ function New-UDCalendar {
         [DateTime]$InitialDate = (Get-Date),
         [Parameter()]
         [ValidateSet("de", "it", "fr", "es")]
-        [string]$Locale
+        [string]$Locale,
+        [Parameter()]
+        [string]$SlotMinTime = "00:00:00",
+        [Parameter()]
+        [string]$SlotMaxTime = "24:00:00"
     )
     
     End {
@@ -63,6 +67,8 @@ function New-UDCalendar {
             view         = $View
             locale       = if ($Locale) { $Locale.ToLower() } else { $null }
             eventClicked = $EventClicked
+            slotMinTime  = $SlotMinTime
+            slotMaxTime  = $SlotMaxTime
         }
     }
 }
