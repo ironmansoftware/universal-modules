@@ -1,8 +1,14 @@
 # PowerGUI App
 
-A PowerGUI Administrative Console clone made in PowerShell Universal.
+A [PowerGUI Administrative Console](https://4sysops.com/archives/powergui-create-powershell-scripts-with-a-gui/) clone made in PowerShell Universal.
+
+### PowerShell Universal PowerGUI
 
 ![](./screenshot.png)
+
+### PowerGUI 3.8
+
+![](./powergui.jpg)
 
 Includes the Local System PowerPack functionality. 
 
