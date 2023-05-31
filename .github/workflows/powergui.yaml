@@ -11,7 +11,7 @@ jobs:
             fetch-depth: 0
         - name: Publish
           run: |
-            Publish-Module -Path .\Utilities\Universal.Apps.PowerGUI -NuGetApiKey $ENV:NUGETAPIKEY -Repository PSGallery -Verbose
+            Publish-Module -Path .\Apps\Universal.Apps.PowerGUI -NuGetApiKey $ENV:NUGETAPIKEY -Repository PSGallery -Verbose
           shell: pwsh
           env:
             NUGETAPIKEY: ${{ secrets.PSGALLERYKEY }}
