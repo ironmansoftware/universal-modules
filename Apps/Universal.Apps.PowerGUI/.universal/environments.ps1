@@ -1,0 +1,1 @@
+New-PSUEnvironment -Name 'PowerGUI' -Path "powershell.exe"

@@ -1,0 +1,1 @@
+New-PSUDashboard -Name 'PowerGUI' -BaseUrl '/powergui' -Module 'Universal.Apps.PowerGUI' -Command 'New-PowerGUIApp' -Authenticated -Role @("Administrator", "PowerGUI User") -Environment 'PowerGUI'
