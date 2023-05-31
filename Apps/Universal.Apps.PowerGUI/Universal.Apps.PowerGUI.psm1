@@ -1,5 +1,8 @@
 function New-PowerGUIApp {
     New-UDDashboard -Title 'PowerGUI' -Content {
+        # Force loading of the ServiceController DLL
+        Get-Service | Out-Null
+    
         $LocalSystem = @{
             Name     = 'Local System'
             Children = @(
@@ -17,6 +20,12 @@ function New-PowerGUIApp {
                     Name                  = "Event Log"
                     Icon                  = "FileLines"
                     Command               = { Get-EventLog -List }
+                    IncludeChildrenInTree = $true
+                }
+                @{
+                    Name                  = 'Drives'
+                    Icon                  = 'HardDrive'
+                    Command               = { Get-PSDrive }
                     IncludeChildrenInTree = $true
                 }
             )
@@ -77,6 +86,35 @@ function New-PowerGUIApp {
                         New-UDTableColumn -Property "message" -Title "Message"
                     )
                 }
+                @{
+                    Type       = [System.Management.Automation.PSDriveInfo]
+                    Columns    = @(
+                        New-UDTableColumn -Property "name" -Title "Name"
+                        New-UDTableColumn -Property "used" -Title "Used"
+                        New-UDTableColumn -Property "free" -Title "Free"
+                        New-UDTableColumn -Property "provider" -Title "Provider"
+                        New-UDTableColumn -Property "root" -Title "Root"
+                    )
+                    TreeNodeId = { $Args[0].Root }
+                    Command    = { Get-ChildItem -Path $Args[0].Root }
+                }
+                @{
+                    Type       = [System.IO.FileInfo]
+                    Columns    = @(
+                        New-UDTableColumn -Property "name" -Title "Name"
+                    )
+                    TreeNodeId = { $Args[0].FullName }
+                    Command    = { Get-ChildItem -Path $Args[0].FullName }
+                }
+                @{
+                    Type         = [System.IO.DirectoryInfo]
+                    Columns      = @(
+                        New-UDTableColumn -Property "name" -Title "Name"
+                    )
+                    TreeNodeId   = { $Args[0].FullName }
+                    Command      = { Get-ChildItem -Path $Args[0].FullName }
+                    TreeChildren = { Get-ChildItem -Path $Args[0].FullName -Directory }
+                }
             )
         }
     
@@ -91,11 +129,13 @@ function New-PowerGUIApp {
                             New-UDTreeNode -Name $_.name -Id $_.Name -Icon (New-UDIcon -Icon $_.Icon) -ExpandedIcon (New-UDIcon -Icon $_.Icon) 
                         }
                     } -OnNodeClicked {
+                        $Type = $null
                         $Item = $Session:Nodes | Where-Object { 
                             $ChildNode = $_
                             $Type = $LocalSystem.Types | Where-Object { $_.Type -eq $ChildNode.GetType() }
                             $_.Name -eq $EventData.Id -or ($Type.TreeNodeId -and (& $Type.TreeNodeId $_) -EQ $EventData.Id)
                         } 
+    
                         $Session:SelectedNode = $Item 
     
                         Sync-UDElement 'resultView'
@@ -110,7 +150,15 @@ function New-PowerGUIApp {
                             }
                         }
     
-                    
+                        if ($Type.TreeChildren) {
+                            & $Type.TreeChildren $Item | ForEach-Object {
+                                $Session:Nodes.Add($_) | Out-Null
+                                $ChildNode = $_
+                                $Type = $LocalSystem.Types | Where-Object { $_.Type -eq $ChildNode.GetType() }
+                                $NodeId = & $Type.TreeNodeId $ChildNode
+                                New-UDTreeNode -Icon (New-UDIcon -Icon $Item.Icon) -ExpandedIcon (New-UDIcon -Icon $Item.Icon) -Name $NodeId -Id $NodeId
+                            }
+                        }
                     }
                 }
     
@@ -152,8 +200,6 @@ function New-PowerGUIApp {
                             }
                         }
                     }
-    
-    
                 } -LoadingComponent {
                     New-UDProgress 
                 }
