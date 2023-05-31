@@ -23,12 +23,12 @@ function New-PowerGUIApp {
                     Command               = { Get-EventLog -List }
                     IncludeChildrenInTree = $true
                 }
-                @{
-                    Name                  = 'Drives'
-                    Icon                  = 'HardDrive'
-                    Command               = { Get-PSDrive }
-                    IncludeChildrenInTree = $true
-                }
+                # @{
+                #     Name                  = 'Drives'
+                #     Icon                  = 'HardDrive'
+                #     Command               = { Get-PSDrive }
+                #     IncludeChildrenInTree = $true
+                # }
                 @{
                     Name    = "Users"
                     Icon    = "User"
@@ -38,6 +38,11 @@ function New-PowerGUIApp {
                     Name    = "Groups"
                     Icon    = "Users"
                     Command = { Get-LocalGroup }
+                }
+                @{  
+                    Name    = "Network Adapters"
+                    Icon    = "NetworkWired"
+                    Command = { Get-NetAdapter }
                 }
             )
             Types    = @(
@@ -141,6 +146,16 @@ function New-PowerGUIApp {
                         New-UDTableColumn -Property "description" -Title "Description"
                     )
                 }
+                @{
+                    Type    = 'Microsoft.Management.Infrastructure.CimInstance#ROOT/StandardCimv2/MSFT_NetAdapter'
+                    Columns = @(
+                        New-UDTableColumn -Property "name" -Title "Name"
+                        New-UDTableColumn -Property "InterfaceDescription" -Title "Description"
+                        New-UDTableColumn -Property "Status" -Title "Status"
+                        New-UDTableColumn -Property "MacAddress" -Title "MAC Address"
+                        New-UDTableColumn -Property "LinkSpeed" -Title "Link Speed"
+                    )
+                }
             )
         }
     
@@ -158,7 +173,7 @@ function New-PowerGUIApp {
                         $Type = $null
                         $Item = $Session:Nodes | Where-Object { 
                             $ChildNode = $_
-                            $Type = $LocalSystem.Types | Where-Object { $_.Type -eq $ChildNode.GetType() }
+                            $Type = $LocalSystem.Types | Where-Object { $_.Type -eq $ChildNode.GetType() -or $_.Type -eq ($ChildNode | Get-Member | Select-Object -First 1).TypeName }
                             $_.Name -eq $EventData.Id -or ($Type.TreeNodeId -and (& $Type.TreeNodeId $_) -EQ $EventData.Id)
                         } 
     
@@ -196,10 +211,10 @@ function New-PowerGUIApp {
                             New-UDAlert -Text "Select a node"
                         }
                         else {
-                            $Type = $LocalSystem.Types | Where-Object { $_.Type -eq $Session:SelectedNode.GetType() }
+                            $Type = $LocalSystem.Types | Where-Object { $_.Type -eq $Session:SelectedNode.GetType() -or $_.Type }
                             if ($Session:SelectedNode.Command) {
                                 $Results = & $Session:SelectedNode.Command
-                                $Type = $LocalSystem.Types | Where-Object { $_.Type -eq ($Results | Select-Object -First 1).GetType() }
+                                $Type = $LocalSystem.Types | Where-Object { $_.Type -eq ($Results | Select-Object -First 1).GetType() -or $_.Type -eq ($Results | Get-Member | Select-Object -First 1).TypeName }
                                 $Results = $Results | Select-Object $Type.Columns.Field
                                 $Columns = $Type.Columns
                                 $Session:Actions = $Type.Actions

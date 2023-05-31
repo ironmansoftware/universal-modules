@@ -17,6 +17,7 @@ Includes the Local System PowerPack functionality.
 - Event Log
 - Users
 - Groups
+- Network Adapters
 
 ### Role-Based Access
 
