@@ -15,6 +15,8 @@ Includes the Local System PowerPack functionality.
 - Processes
 - Services
 - Event Log
+- Users
+- Groups
 
 ### Role-Based Access
 

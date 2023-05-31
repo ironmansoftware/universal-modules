@@ -1,7 +1,8 @@
 function New-PowerGUIApp {
     New-UDDashboard -Title 'PowerGUI' -Content {
-        # Force loading of the ServiceController DLL
+        # Force loading of DLLs
         Get-Service | Out-Null
+        Get-LocalUser | Out-Null
     
         $LocalSystem = @{
             Name     = 'Local System'
@@ -27,6 +28,16 @@ function New-PowerGUIApp {
                     Icon                  = 'HardDrive'
                     Command               = { Get-PSDrive }
                     IncludeChildrenInTree = $true
+                }
+                @{
+                    Name    = "Users"
+                    Icon    = "User"
+                    Command = { Get-LocalUser }
+                }
+                @{  
+                    Name    = "Groups"
+                    Icon    = "Users"
+                    Command = { Get-LocalGroup }
                 }
             )
             Types    = @(
@@ -114,6 +125,21 @@ function New-PowerGUIApp {
                     TreeNodeId   = { $Args[0].FullName }
                     Command      = { Get-ChildItem -Path $Args[0].FullName }
                     TreeChildren = { Get-ChildItem -Path $Args[0].FullName -Directory }
+                }
+                @{
+                    Type    = [Microsoft.PowerShell.Commands.LocalUser]
+                    Columns = @(
+                        New-UDTableColumn -Property "name" -Title "Name"
+                        New-UDTableColumn -Property "enabled" -Title "Enabled"
+                        New-UDTableColumn -Property "description" -Title "Description"
+                    )
+                }
+                @{
+                    Type    = [Microsoft.PowerShell.Commands.LocalGroup]
+                    Columns = @(
+                        New-UDTableColumn -Property "name" -Title "Name"
+                        New-UDTableColumn -Property "description" -Title "Description"
+                    )
                 }
             )
         }
