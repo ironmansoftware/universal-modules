@@ -5,6 +5,7 @@ PowerShell Universal modules that provide additional functionality to the platfo
 ## Apps 
 
 - [Active Directory](/Apps/Universal.Apps.ActiveDirectory/)
+- [Network Utilities](/Apps/Universal.Apps.NetworkUtilities/)
 - [PowerGUI](/Apps/Universal.Apps.PowerGUI/)
 - [Windows System Information](/Apps/Universal.Apps.WindowsSystemInformation/)
 
