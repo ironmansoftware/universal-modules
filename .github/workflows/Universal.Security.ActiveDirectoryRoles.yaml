@@ -1,0 +1,18 @@
+name: Publish Universal.Security.ActiveDirectoryRoles
+on: [workflow_dispatch]
+
+jobs:
+    build:
+      name: Build
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+          with:
+            fetch-depth: 0
+        - name: Publish
+          run: |
+            Install-Module -Name PowerShellGet -Force -SkipPublisherCheck -Scope CurrentUser -AllowClobber -Confirm:$false -AllowPrerelease
+            Publish-PSResource -Path .\Security\Universal.Security.ActiveDirectoryRoles -ApiKey $ENV:NUGETAPIKEY -Repository PSGallery -Verbose
+          shell: pwsh
+          env:
+            NUGETAPIKEY: ${{ secrets.PSGALLERYKEY }}
