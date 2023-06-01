@@ -11,7 +11,8 @@ jobs:
             fetch-depth: 0
         - name: Publish
           run: |
-            Publish-Module -Path .\Apps\Universal.Apps.WindowsSystemInformation -NuGetApiKey $ENV:NUGETAPIKEY -Repository PSGallery -Verbose
+            Install-Module -Name PowerShellGet -Force -SkipPublisherCheck -Scope CurrentUser -AllowClobber -Confirm:$false -AllowPrerelease
+            Publish-PSResource -Path .\Apps\Universal.Apps.WindowsSystemInformation -ApiKey $ENV:NUGETAPIKEY -Repository PSGallery -Verbose
           shell: pwsh
           env:
             NUGETAPIKEY: ${{ secrets.PSGALLERYKEY }}
