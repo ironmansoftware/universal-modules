@@ -1,0 +1,1 @@
+New-PSUDashboard -Name 'Network Utilities' -BaseUrl '/network-utilities' -Module 'Universal.Apps.NetworkUtilities' -Command 'New-NetworkUtilityApp' -Authenticated -Role @("Administrator", "Network Utilities User")

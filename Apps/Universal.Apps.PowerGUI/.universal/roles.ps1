@@ -1,0 +1,1 @@
+New-PSURole -Name 'PowerGUI User' -Description "Users that have access to the PowerGUI app."

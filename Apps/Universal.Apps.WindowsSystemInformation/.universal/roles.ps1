@@ -1,0 +1,1 @@
+New-PSURole -Name 'Windows System Information User' -Description "Users that have access to the Windows System Information app."
