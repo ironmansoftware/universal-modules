@@ -11,6 +11,7 @@
             } -OnSubmit {
                 New-PSUServiceGroup -Name $EventData.Name -Description $EventData.Description
                 Sync-UDElement -Id 'serviceGroups'
+                Hide-UDModal
             } -SubmitText "Create" -OnCancel {
                 Hide-UDModal
             }

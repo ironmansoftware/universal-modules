@@ -64,4 +64,10 @@ New-PSURole -Name "Active Directory" -Description "A user that has access to Act
     )
    
     $true
+} 
+New-PSURole -Name "Self-Service Admin" -Description "An administrator of the Self-Service app. " -Policy {
+    # Define your policy here
+} 
+New-PSURole -Name "Test" -Description "Test" -Policy {
+    $true
 }
