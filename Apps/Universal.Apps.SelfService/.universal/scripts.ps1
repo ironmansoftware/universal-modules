@@ -1,0 +1,2 @@
+﻿New-PSUScript -Name "Reset Password.ps1" -Description "Resets an account password. " -Tag @('Self-Service', 'Active Directory') -Path "Self-Service\Active Directory\Reset Password.ps1" -InformationAction "SilentlyContinue" 
+New-PSUScript -Name "Create Virtual Machine.ps1" -Description "Creates a new virtual machine. " -Tag @('Self-Service', 'Hyper-V') -Path "Self-Service\Hyper-V\Create Virtual Machine.ps1" -InformationAction "SilentlyContinue"

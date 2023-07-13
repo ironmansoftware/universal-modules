@@ -1,0 +1,1 @@
+﻿New-PSUPublishedFolder -RequestPath "/images" -Path "images" -DefaultDocument @() -Name "Images"

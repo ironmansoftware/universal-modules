@@ -1,0 +1,1 @@
+﻿New-PSUApp -Name "Self-Service" -FilePath "dashboards\Self-Service\Self-Service.ps1" -BaseUrl "/self-service" -Authenticated -AutoDeploy -Description "Self-service portal to allow users to execute assigned scripts. "
