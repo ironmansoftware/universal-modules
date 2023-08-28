@@ -90,5 +90,9 @@ task Joyride {
     Invoke-Build -File "$PSScriptRoot\Joyride\component.build.ps1"
 }
 
+task Loader {
+    Invoke-Build -File "$PSScriptRoot\Loader\component.build.ps1"
+}
 
-task . MaterialDesign, Feather, Bootstrap, Tabler, Calendar, TinyMCE, Recharts, Joyride
+
+task . MaterialDesign, Feather, Bootstrap, Tabler, Calendar, TinyMCE, Recharts, Joyride, Loader
