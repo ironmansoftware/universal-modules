@@ -1,4 +1,4 @@
-# ⭐ Please use our [script repository](https://github.com/ironmansoftware/universal-modules) instead
+# ⭐ Please use our [script repository](https://github.com/ironmansoftware/scripts) instead
 
 # PowerShell Universal Modules
 
