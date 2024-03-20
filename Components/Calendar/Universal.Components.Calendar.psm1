@@ -12,6 +12,41 @@ function New-UDCalendar {
     .PARAMETER Id
     The ID for this component. If not specified, a GUID will be generated.
 
+    .PARAMETER Events
+    The events to display on the calendar.
+
+    .PARAMETER DateClicked
+    The endpoint to call when a date is clicked.
+
+    .PARAMETER EventClicked
+    The endpoint to call when an event is clicked.
+
+    .PARAMETER View
+    The initial view for the calendar. Valid values are dayGridYear, dayGridMonth, dayGridWeek, dayGridDay, timeGridWeek, timeGridDay, listWeek, listDay, listMonth, listYear, multiMonthYear.
+
+    .PARAMETER HideWeekends
+    Indicates if weekends should be hidden.
+
+    .PARAMETER HiddenDays
+    The days of the week to hide. 0 is Sunday, 1 is Monday, etc.
+
+    .PARAMETER HideDayHeader
+    Indicates if the day header should be hidden.
+
+    .PARAMETER InitialDate
+    The initial date to display on the calendar.
+
+    .PARAMETER Locale
+    The locale to use for the calendar.
+
+    .PARAMETER SlotMinTime
+    The minimum time to display in the calendar.
+
+    .PARAMETER SlotMaxTime
+    The maximum time to display in the calendar.
+
+    .PARAMETER HeaderToolbar
+    The header toolbar configuration for the calendar.
     #>
     param(
         [Parameter()]
@@ -39,7 +74,13 @@ function New-UDCalendar {
         [Parameter()]
         [string]$SlotMinTime = "00:00:00",
         [Parameter()]
-        [string]$SlotMaxTime = "24:00:00"
+        [string]$SlotMaxTime = "24:00:00",
+        [Parameter()]
+        [Hashtable]$HeaderToolbar = @{
+            start  = 'title'
+            center = ''
+            end    = 'today prev,next'
+        }
     )
     
     End {
@@ -52,23 +93,24 @@ function New-UDCalendar {
         }
 
         @{
-            assetId      = $AssetId 
-            isPlugin     = $true 
-            type         = "ud-calendar"
-            id           = $Id
+            assetId       = $AssetId 
+            isPlugin      = $true 
+            type          = "ud-calendar"
+            id            = $Id
 
-            events       = $Events
-            dateClicked  = $DateClicked
-            renderEvent  = $RenderEvent
-            weekends     = -not $HideWeekends.IsPresent
-            hiddenDays   = $HiddenDays
-            dayHeaders   = -not $HideDayHeader.IsPresent
-            initialDate  = $InitialDate
-            view         = $View
-            locale       = if ($Locale) { $Locale.ToLower() } else { $null }
-            eventClicked = $EventClicked
-            slotMinTime  = $SlotMinTime
-            slotMaxTime  = $SlotMaxTime
+            events        = $Events
+            dateClicked   = $DateClicked
+            renderEvent   = $RenderEvent
+            weekends      = -not $HideWeekends.IsPresent
+            hiddenDays    = $HiddenDays
+            dayHeaders    = -not $HideDayHeader.IsPresent
+            initialDate   = $InitialDate
+            view          = $View
+            locale        = if ($Locale) { $Locale.ToLower() } else { $null }
+            eventClicked  = $EventClicked
+            slotMinTime   = $SlotMinTime
+            slotMaxTime   = $SlotMaxTime
+            headerToolbar = $HeaderToolbar
         }
     }
 }

@@ -55,6 +55,7 @@ const UDComponent = props => {
             eventClick={eventClicked}
             slotMinTime={props.slotMinTime}
             slotMaxTime={props.slotMaxTime}
+            headerToolbar={props.headerToolbar}
         />
     )
 }
