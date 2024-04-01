@@ -1,2 +1,2 @@
 import UDComponent from './component';
-UniversalDashboard.register("ud-mdicon", UDComponent);
+UniversalDashboard.register("ud-adcard", UDComponent);

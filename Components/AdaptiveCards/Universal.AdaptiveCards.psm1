@@ -46,7 +46,7 @@ function New-UDAdaptiveCard {
         @{
             assetId   = $AssetId 
             isPlugin  = $true 
-            type      = "ud-mdicon"
+            type      = "ud-adaptivecard"
             id        = $Id
 
             icon      = $icon
