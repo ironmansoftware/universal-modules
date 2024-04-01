@@ -37,7 +37,9 @@ function New-UDMaterialDesignIcon {
         [Parameter()]
         [Hashtable]$Style,
         [Parameter()]
-        [string]$ClassName
+        [string]$ClassName,
+        [Parameter()]
+        [string]$Size
     )
     
     End {
