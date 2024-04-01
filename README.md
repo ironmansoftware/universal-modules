@@ -1,5 +1,3 @@
-# ⭐ Please use our [script repository](https://github.com/ironmansoftware/scripts) instead
-
 # PowerShell Universal Modules
 
 PowerShell Universal modules that provide additional functionality to the platform.
