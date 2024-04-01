@@ -1,14 +1,3 @@
-# PowerShell Universal Modules
-
-PowerShell Universal modules that provide additional functionality to the platform.
-
-## Apps 
-
-- [Active Directory](/Apps/Universal.Apps.ActiveDirectory/)
-- [Network Utilities](/Apps/Universal.Apps.NetworkUtilities/)
-- [PowerGUI](/Apps/Universal.Apps.PowerGUI/)
-- [Windows System Information](/Apps/Universal.Apps.WindowsSystemInformation/)
-
 ## Components
 
 Additional components to add to your PowerShell Universal apps. 
@@ -22,30 +11,6 @@ Additional components to add to your PowerShell Universal apps.
 - [Tabler Icons](/Components/Icons.Tabler/)
 - [TinyMCE](/Components/TinyMCE)
 - [Recharts](/Components/Recharts)
-
-## [Notifications](/Notifications/Universal.Notifications/README.md)
-
-Scripts that can be used along with triggers for notifications purposes. 
-
-```powershell
-Install-Module Universal.Notifications
-```
-
-Available functions: 
-
-- Send-PSUFailedJobEmail
-- Send-PSUFailedJobSlackNotification
-- Send-PSUFailedJobTeamsNotification
-
-## Utilities
-
-Utility functions for features of PowerShell Universal. 
-
-- [App Utilities](/Utilities/Universal.Utilities.Apps/)
-
-## Security 
-
-- [Active Directory Roles](./Security/Universal.Security.ActiveDirectoryRoles/)
 
 ## Gallery
 
