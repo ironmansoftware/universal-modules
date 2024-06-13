@@ -169,6 +169,7 @@ function New-UDActiveDirectoryApp {
                         $LastRun = $Job.EndTime
                         $Objects = ($Job | Get-PSUJobPipelineOutput -Integrated | Measure-Object).Count
                     }
+                    $Url = $_.Url
                     New-UDElement -Content {
                         New-UDCard -Title $_.Title -Content {
                             New-UDStack -Direction column -Content {
@@ -180,7 +181,7 @@ function New-UDActiveDirectoryApp {
                         }
                     } -Tag 'div' -Attributes @{
                         onClick = {
-                            Invoke-UDRedirect $_.Url
+                            Invoke-UDRedirect $Url
                         }
                         style   = @{
                             cursor = 'pointer'
