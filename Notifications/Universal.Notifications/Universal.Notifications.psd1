@@ -12,7 +12,7 @@
     RootModule        = '.\Universal.Notifications.psm1'
 
     # Version number of this module.
-    ModuleVersion     = '0.0.4'
+    ModuleVersion     = '0.0.5'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -51,7 +51,7 @@
     # ProcessorArchitecture = ''
 
     # Modules that must be imported into the global environment prior to importing this module
-    RequiredModules   = @("PSHtml", "PSTeams")
+    RequiredModules   = @("PSWriteHtml", "PSTeams")
 
     # Assemblies that must be loaded prior to importing this module
     # RequiredAssemblies = @()
